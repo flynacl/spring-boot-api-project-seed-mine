@@ -232,6 +232,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     }
 
     // https://github.com/lihengming/spring-boot-api-project-seed/issues/90
+
 //    @Override
 //    public void addViewControllers(ViewControllerRegistry registry) {
 //        registry.addRedirectViewController("/v2/api-docs", "/v2/api-docs?group=restful-api");
