@@ -6,7 +6,7 @@ package com.company.project.core;
 public enum ResultCode {
     /**
      * 成功
-      */
+     */
     SUCCESS(200),
 
     /**

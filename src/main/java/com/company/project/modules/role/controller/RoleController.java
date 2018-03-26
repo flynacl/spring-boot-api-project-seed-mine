@@ -1,9 +1,9 @@
-package com.company.project.modules.sysconfig.controller;
+package com.company.project.modules.role.controller;
 
 import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
-import com.company.project.modules.sysconfig.model.SysConfig;
-import com.company.project.modules.sysconfig.service.SysConfigService;
+import com.company.project.modules.role.model.Role;
+import com.company.project.modules.role.service.RoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,43 +21,43 @@ import java.util.List;
 
 /**
  * @author flynacl
- * @date 2018-03-23
+ * @date 2018-03-26
  */
 @RestController
-@RequestMapping("sysconfig")
-public class SysConfigController {
+@RequestMapping("role")
+public class RoleController {
     @Resource
-    private SysConfigService sysConfigService;
+    private RoleService roleService;
 
     @PostMapping
-    public Result add(@RequestBody SysConfig sysConfig) {
-        sysConfigService.save(sysConfig);
+    public Result add(@RequestBody Role role) {
+        roleService.save(role);
         return ResultGenerator.genSuccessResult();
     }
 
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
-        sysConfigService.deleteById(id);
+        roleService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PutMapping
-    public Result update(@RequestBody SysConfig sysConfig) {
-        sysConfigService.update(sysConfig);
+    public Result update(@RequestBody Role role) {
+        roleService.update(role);
         return ResultGenerator.genSuccessResult();
     }
 
     @GetMapping("/{id}")
     public Result detail(@PathVariable Integer id) {
-        SysConfig sysConfig = sysConfigService.findById(id);
-        return ResultGenerator.genSuccessResult(sysConfig);
+        Role role = roleService.findById(id);
+        return ResultGenerator.genSuccessResult(role);
     }
 
     @GetMapping
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<SysConfig> list = sysConfigService.findAll();
-        PageInfo<SysConfig> pageInfo = new PageInfo<>(list);
+        List<Role> list = roleService.findAll();
+        PageInfo<Role> pageInfo = new PageInfo<>(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 }

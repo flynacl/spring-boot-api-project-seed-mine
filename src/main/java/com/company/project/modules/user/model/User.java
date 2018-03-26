@@ -1,106 +1,142 @@
 package com.company.project.modules.user.model;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.Date;
-import javax.persistence.*;
 
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "user_id")
+    private Integer userId;
 
+    /**
+     * 用户名
+     */
     private String username;
 
+    /**
+     * 密码
+     */
     private String password;
 
-    @Column(name = "nick_name")
-    private String nickName;
-
-    private Integer sex;
-
-    @Column(name = "register_date")
-    private Date registerDate;
+    /**
+     * 角色ID
+     */
+    @Column(name = "role_id")
+    private Integer roleId;
 
     /**
-     * @return id
+     * 上次密码修改日期
      */
-    public Integer getId() {
-        return id;
+    @Column(name = "last_password_change")
+    private Date lastPasswordChange;
+
+    /**
+     * 账户可用
+     */
+    private Boolean enable;
+
+    /**
+     * @return user_id
+     */
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
-     * @param id
+     * @param userId
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     /**
-     * @return username
+     * 获取用户名
+     *
+     * @return username - 用户名
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * @param username
+     * 设置用户名
+     *
+     * @param username 用户名
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * @return password
+     * 获取密码
+     *
+     * @return password - 密码
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * @param password
+     * 设置密码
+     *
+     * @param password 密码
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * @return nick_name
+     * 获取角色ID
+     *
+     * @return role_id - 角色ID
      */
-    public String getNickName() {
-        return nickName;
+    public Integer getRoleId() {
+        return roleId;
     }
 
     /**
-     * @param nickName
+     * 设置角色ID
+     *
+     * @param roleId 角色ID
      */
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 
     /**
-     * @return sex
+     * 获取上次密码修改日期
+     *
+     * @return last_password_change - 上次密码修改日期
      */
-    public Integer getSex() {
-        return sex;
+    public Date getLastPasswordChange() {
+        return lastPasswordChange;
     }
 
     /**
-     * @param sex
+     * 设置上次密码修改日期
+     *
+     * @param lastPasswordChange 上次密码修改日期
      */
-    public void setSex(Integer sex) {
-        this.sex = sex;
+    public void setLastPasswordChange(Date lastPasswordChange) {
+        this.lastPasswordChange = lastPasswordChange;
     }
 
     /**
-     * @return register_date
+     * 获取账户可用
+     *
+     * @return enable - 账户可用
      */
-    public Date getRegisterDate() {
-        return registerDate;
+    public Boolean getEnable() {
+        return enable;
     }
 
     /**
-     * @param registerDate
+     * 设置账户可用
+     *
+     * @param enable 账户可用
      */
-    public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 }
