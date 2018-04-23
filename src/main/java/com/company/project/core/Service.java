@@ -65,7 +65,7 @@ public interface Service<T> {
     /**
      * 通过多个ID查找eg：ids -> “1,2,3,4”
      *
-     * @param ids
+     * @param ids ID字符串，','分割
      * @return List<T>
      */
     List<T> findByIds(String ids);

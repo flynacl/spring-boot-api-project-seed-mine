@@ -57,7 +57,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/user/login").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/wechat/authWeb").permitAll()
+                .antMatchers("/wechat/getAuthResult").permitAll()
+//                .anyRequest().authenticated()
                 // 需携带有效 token
 //                .antMatchers("/auth").authenticated()
                 // 需拥有 admin 这个权限
@@ -66,13 +68,13 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/ADMIN").hasRole("ADMIN")
                 // 允许所有请求通过
 //                .anyRequest().permitAll()
-                .and()
+//                .and()
                 // 配置被拦截时的处理
-                .exceptionHandling()
+//                .exceptionHandling()
                 // 添加 token 无效或者没有携带 token 时的处理
-                .authenticationEntryPoint(this.unauthorizedHandler)
+//                .authenticationEntryPoint(this.unauthorizedHandler)
                 //添加无权限时的处理
-                .accessDeniedHandler(this.accessDeniedHandler)
+//                .accessDeniedHandler(this.accessDeniedHandler)
                 .and()
                 .csrf()
                 // 禁用 Spring Security 自带的跨域处理

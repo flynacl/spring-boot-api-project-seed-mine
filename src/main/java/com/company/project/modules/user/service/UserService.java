@@ -12,4 +12,6 @@ import java.util.List;
 public interface UserService extends Service<User> {
 
     List<User> login(User user);
+
+    com.company.project.configurer.security.model.User getUserByOpenId(String openId);
 }

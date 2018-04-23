@@ -33,6 +33,11 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         return userMapper.selectByCondition(condition);
     }
 
+    @Override
+    public com.company.project.configurer.security.model.User getUserByOpenId(String openId) {
+        return userMapper.selectUserByOpenId(openId);
+    }
+
     /**
      * 获取 userDetail
      *

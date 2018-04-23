@@ -27,4 +27,22 @@
             `user`.username = #{username}
             AND `user`.role_id = role.role_id
     </select>
+
+
+    <select id = "selectUserByOpenId"
+            parameterType = "java.lang.String"
+            resultType = "com.company.project.configurer.security.model.User">
+        SELECT
+            `user`.username,
+            `user`.password,
+            `user`.last_password_change AS lastPasswordChange,
+            `user`.enable
+        FROM
+            test.`user`,
+            test.`openid-user` ouser
+
+        WHERE
+            ouser.openid = #{openId}
+            AND `user`.user_id = ouser.user_id
+    </select>
 </mapper>

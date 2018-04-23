@@ -9,6 +9,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +32,13 @@ import java.util.Map;
  * @date 2018-03-26
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("api/user")
 public class UserController {
     @Resource
     private UserService userService;
+
+    @Resource
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private TokenUtils tokenUtils;
@@ -56,6 +62,16 @@ public class UserController {
         } else {
             return ResultGenerator.genFailResult("用户名或密码错误！");
         }
+    }
+
+    @GetMapping("getUserInfo")
+    public Result getUserInfo(HttpServletRequest request) {
+        String authToken = request.getHeader(this.tokenHeader);
+        // 尝试拿 token 中的 username
+        // 若是没有 token 或者拿 username 时出现异常，那么 username 为 null
+        String username = this.tokenUtils.getUsernameFromToken(authToken);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        return ResultGenerator.genSuccessResult(userDetails);
     }
 
     @PostMapping
